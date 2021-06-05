@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 
 import { AuthBody } from './../../interfaces/index';
-import { AuthService } from './../../services/auth.service';
+import { AuthService } from '../../services/authentication/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -14,6 +14,7 @@ export class LoginComponent implements OnInit {
   public loginFormGroup: FormGroup;
 
   constructor(
+    private authService: AuthService,
     private readonly builder: FormBuilder,
   ) {
     this.isHide = true;
@@ -32,7 +33,10 @@ export class LoginComponent implements OnInit {
    * @description Send a request to log into the system
    */
   public onSubmit(): void {
-    this.createAuthBody();
+    const bodyRequest = this.createAuthBody();
+    this.authService.login(bodyRequest)
+    .then((res) => {console.log('res :>> ', res);})
+    .catch((err) => {console.log('err :>> ', err);})
   }
 
   /**
@@ -64,7 +68,7 @@ export class LoginComponent implements OnInit {
    */
   private createAuthBody(): AuthBody {
     const authBody = {
-      email: this.loginFormGroup.value.username,
+      email: this.loginFormGroup.value.email,
       password: this.loginFormGroup.value.password
     };
 
