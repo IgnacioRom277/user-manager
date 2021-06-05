@@ -3,6 +3,7 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 
 import { AuthBody } from './../../interfaces/index';
 import { AuthService } from '../../services/authentication/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -16,6 +17,7 @@ export class LoginComponent implements OnInit {
   constructor(
     private authService: AuthService,
     private readonly builder: FormBuilder,
+    private router: Router
   ) {
     this.isHide = true;
     this.loginFormGroup = this.builder.group({
@@ -27,6 +29,7 @@ export class LoginComponent implements OnInit {
 
   ngOnInit(): void {
     this.initForm(this.builder);
+    this.validateLoggedUser();
   }
 
   /**
@@ -73,5 +76,15 @@ export class LoginComponent implements OnInit {
     };
 
     return authBody;
+  }
+
+  /**
+   * @description Check if user is logged
+   */
+  private validateLoggedUser(): void {
+    const isAuthenticated: boolean = this.authService.isAuthenticated();
+    if (isAuthenticated) {
+      this.router.navigate(['/home'])
+    }
   }
 }

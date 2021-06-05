@@ -4,6 +4,7 @@ import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
+import { LocalStorageService } from './services/utils/local-storage.service';
 import { LoginComponent } from './pages/login/login.component';
 import { SharedModule } from './modules/shared/shared.module';
 
@@ -18,7 +19,9 @@ import { SharedModule } from './modules/shared/shared.module';
     BrowserModule,
     SharedModule
   ],
-  providers: [],
+  providers: [
+    LocalStorageService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
