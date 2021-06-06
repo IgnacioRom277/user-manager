@@ -8,6 +8,7 @@ import { ErrorPageComponent } from './pages/error-page/error-page.component';
 import { HomeComponent } from './pages/home/home.component';
 import { LocalStorageService } from './services/utils/local-storage.service';
 import { LoginComponent } from './pages/login/login.component';
+import { PaginatorService } from './services/utils/paginator-service';
 import { SharedModule } from './modules/shared/shared.module';
 
 @NgModule({
@@ -24,7 +25,8 @@ import { SharedModule } from './modules/shared/shared.module';
     SharedModule
   ],
   providers: [
-    LocalStorageService
+    LocalStorageService,
+    PaginatorService
   ],
   bootstrap: [AppComponent]
 })
