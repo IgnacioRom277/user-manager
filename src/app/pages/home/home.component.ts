@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator, PageEvent } from '@angular/material/paginator';
 import {MatTableDataSource} from '@angular/material/table';
+import { Router } from '@angular/router';
 
 import { PaginatorService } from './../../services/utils/paginator-service';
 import { User, UserReponse } from './../../interfaces/users';
@@ -11,7 +12,7 @@ const DISPLAYED_COLUMNS = ['preview', 'email', 'first_name', 'last_name'];
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
-  styleUrls: ['./home.component.css']
+  styleUrls: ['./home.component.css', '../../app.component.css']
 })
 export class HomeComponent implements OnInit {
   public dataSource!: MatTableDataSource<User>;
@@ -25,6 +26,7 @@ export class HomeComponent implements OnInit {
 
   constructor(
     private userService: UserService,
+    private router: Router,
     private paginatorService: PaginatorService
   ) { }
 
@@ -47,5 +49,13 @@ export class HomeComponent implements OnInit {
       this.totalUsers = this.userResponse.total;
       this.usersPerPage = this.userResponse.per_page;
     }
+  }
+
+  /**
+   * @description Redirects to user page sending user's id
+   * @param userData User data to get identifier
+   */
+  public onUserSelected(userData: User): void {
+    this.router.navigate(['/user'], {queryParams: {id: userData.id}});
   }
 }

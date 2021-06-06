@@ -1,0 +1,32 @@
+h2 {
+  text-align: center;
+  background-color: #00263a;
+  color: white;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+}
+
+.image-button-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.table-container {
+  width: 80%;
+  height: 300px;
+  overflow: auto;
+  margin: auto;
+}
+
+.mat-table {
+  width: 100% !important;
+}
+
+.paginator-container {
+  width: 90%;
+}
+
+.mat-icon {
+  font-size: 17px;
+}
+
