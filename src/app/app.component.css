@@ -4,6 +4,7 @@
 }
 
 .general-container {
+  height: 100%;
   width: 100%;
   margin: 1% auto;
 }
@@ -47,4 +48,17 @@
   padding: 0%;
   border-radius: 5px;
   box-shadow: 0 0.3em 0.4em 0 rgba(0,0,0.07);
+}
+
+.mat-icon-button .mat-icon {
+  font-size: 170%;
+}
+
+.space-between {
+  flex: 1 1 auto;
+}
+
+.nav-option-label {
+  width: 100%;
+  text-align: center;
 }
