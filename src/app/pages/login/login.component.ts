@@ -37,12 +37,15 @@ export class LoginComponent implements OnInit {
    */
   public onSubmit(): void {
     const bodyRequest = this.createAuthBody();
-    const isTokenGenerated = this.authService.login(bodyRequest)
-    .then((res) => { return res; })
+    this.authService.login(bodyRequest)
+    .then((res) => {
+      if (res.token) {
+        this.router.navigate(['/home']);
+      } else {
+        this.router.navigate(['/not-found']);
+      }
+    })
     .catch((err) => { this.router.navigate(['/not-found']) })
-    if (isTokenGenerated) {
-      this.router.navigate(['/home']);
-    }
   }
 
   /**
