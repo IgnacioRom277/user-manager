@@ -1,3 +1,4 @@
+import { RouterTestingModule } from '@angular/router/testing';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ErrorPageComponent } from './error-page.component';
@@ -8,7 +9,10 @@ describe('ErrorPageComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ ErrorPageComponent ]
+      declarations: [ ErrorPageComponent ],
+      imports: [
+        RouterTestingModule
+      ],
     })
     .compileComponents();
   });
