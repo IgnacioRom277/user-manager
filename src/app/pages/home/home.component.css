@@ -1,0 +1,35 @@
+.general-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
+.user {
+  margin: 2%;
+  justify-content: center;
+  text-align: center;
+  border-radius: 3%;
+  min-width: 12%;
+}
+
+img {
+  width: 4vw;
+  border-radius: 50%;
+  border: 3px solid #00263a;
+}
+
+h1 {
+  font-weight: 600;
+  margin: 2% 0;
+}
+
+h3 {
+  font-weight: 500;
+}
+
+.mat-table {
+  width: 80%;
+  margin: auto;
+}
