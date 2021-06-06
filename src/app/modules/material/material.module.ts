@@ -1,3 +1,4 @@
+import { MatDialogModule } from '@angular/material/dialog';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatDividerModule } from '@angular/material/divider';
@@ -22,7 +23,8 @@ const matImports = [
   MatListModule,
   MatPaginatorModule,
   MatSidenavModule,
-  MatTableModule
+  MatTableModule,
+  MatDialogModule
 ];
 
 @NgModule({

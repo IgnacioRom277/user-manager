@@ -9,6 +9,7 @@ import { LocalStorageService } from './services/utils/local-storage.service';
 import { PaginatorService } from './services/utils/paginator-service';
 
 import { AppComponent } from './app.component';
+import { DialogStandardComponent } from './pages/dialog/dialog-standard/dialog-standard.component';
 import { ErrorPageComponent } from './pages/error-page/error-page.component';
 import { HomeComponent } from './pages/home/home.component';
 import { LoginComponent } from './pages/login/login.component';
@@ -20,7 +21,8 @@ import { UserComponent } from './pages/user/user.component';
     ErrorPageComponent,
     HomeComponent,
     LoginComponent,
-    UserComponent
+    UserComponent,
+    DialogStandardComponent
   ],
   imports: [
     AppRoutingModule,
@@ -31,6 +33,9 @@ import { UserComponent } from './pages/user/user.component';
   providers: [
     LocalStorageService,
     PaginatorService
+  ],
+  entryComponents: [
+    DialogStandardComponent
   ],
   bootstrap: [AppComponent]
 })
