@@ -1,0 +1,49 @@
+.general-container {
+  display: flex;
+  align-items: stretch;
+  height: 100%;
+  background-color: rgba(100, 148, 237, 0.507);
+  height: 100%;
+  flex-wrap: wrap;
+}
+
+.left-container, .right-container {
+  width: 50%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+h2 {
+  text-align: center;
+}
+
+.mat-card {
+  width: 60%;
+  border-top: 10px solid #00263a !important;
+  border-bottom: 10px solid #00263a !important;
+  background-color: whitesmoke;
+  border-radius: 10px;
+}
+
+div.mat-card-header-text {
+  margin: 0 !important;
+}
+
+.mat-card-header, .mat-card-content, .mat-card-actions {
+  width: 100%;
+  justify-content: center;
+}
+
+.mat-card, .mat-card-actions, form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+button {
+  width: 90%;
+  flex-wrap: wrap;
+}

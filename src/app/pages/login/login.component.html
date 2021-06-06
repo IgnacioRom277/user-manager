@@ -1,0 +1,39 @@
+<div class="general-container">
+  <div class="left-container">
+    <img src="./../../../assets/img/user.png" width="95%">
+  </div>
+  <div class="right-container">
+    <mat-card>
+      <h2>Iniciar sesión en User-Manager</h2>
+      <mat-card-content>
+        <form [formGroup]="loginFormGroup">
+          <mat-form-field appearance="fill">
+            <mat-label>
+              Correo electrónico
+            </mat-label>
+            <input matInput formControlName="email">
+            <mat-error *ngIf="this.loginFormGroup.controls.email.invalid"> {{getErrorMessage()}}</mat-error>
+          </mat-form-field>
+          <mat-form-field appearance="fill">
+            <mat-label>
+              Contraseña
+            </mat-label>
+            <input matInput [type]="isHide ? 'password' : 'text'" formControlName="password">
+            <mat-error> La contraseña es requerida </mat-error>
+            <button mat-icon-button matSuffix (click)="isHide = !isHide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="isHide">
+              <mat-icon>{{ isHide ? 'visibility_off' : 'visibility' }}</mat-icon>
+            </button>
+          </mat-form-field>
+        </form>
+      </mat-card-content>
+
+      <mat-card-actions>
+        <button mat-raised-button color="primary" [disabled]=!loginFormGroup.valid (click)="onSubmit()">Iniciar sesión</button>
+        <mat-divider></mat-divider>
+        <a href="https://www.instagram.com/">¿Olvidaste tu contraseña?</a>
+        <button mat-raised-button color="primary" (click)="onSubmit()">Crear cuenta</button>
+      </mat-card-actions>
+    </mat-card>
+  </div>
+
+</div>
