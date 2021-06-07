@@ -1,3 +1,4 @@
+import { DialogStandardConsts } from './constants/dialogStandard.constants';
 import { Component, Inject, OnInit } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 
@@ -14,15 +15,15 @@ export class DialogStandardComponent {
     ) { }
 
   public onClickButton1(): void {
-    this.dialogRef.close('Cancel');
+    this.dialogRef.close(DialogStandardConsts.CANCEL);
   }
 
   public onClickButton2(): void {
-    this.dialogRef.close('Confirm');
+    this.dialogRef.close(DialogStandardConsts.CONFIRM);
   }
 
   public onClickClose(): void {
-    this.dialogRef.close('Closed');
+    this.dialogRef.close(DialogStandardConsts.CLOSED);
   }
 
 }

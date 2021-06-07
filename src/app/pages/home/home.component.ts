@@ -1,3 +1,4 @@
+import { HomeTags, HomeConsts, DISPLAYED_COLUMNS } from './constants/home.constants';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator, PageEvent } from '@angular/material/paginator';
 import {MatTableDataSource} from '@angular/material/table';
@@ -6,8 +7,6 @@ import { Router } from '@angular/router';
 import { PaginatorService } from './../../services/utils/paginator-service';
 import { User, UserReponse } from './../../interfaces/users';
 import { UserService } from './../../services/users/users.service';
-
-const DISPLAYED_COLUMNS = ['preview', 'email', 'first_name', 'last_name', 'actions'];
 
 @Component({
   selector: 'app-home',
@@ -21,6 +20,7 @@ export class HomeComponent implements OnInit {
   public userList!: Array<User>;
   public userResponse!: UserReponse;
   public usersPerPage!: number;
+  public tags: any;
 
   @ViewChild(MatPaginator, {static: true}) paginator!: MatPaginator;
 
@@ -28,7 +28,9 @@ export class HomeComponent implements OnInit {
     private userService: UserService,
     private router: Router,
     private paginatorService: PaginatorService
-  ) { }
+  ) {
+    this.tags = HomeTags
+  }
 
   ngOnInit(): void {
     this.getUsers();
@@ -56,6 +58,6 @@ export class HomeComponent implements OnInit {
    * @param userData User data to get identifier
    */
   public onUserSelected(userData: User): void {
-    this.router.navigate(['/user'], {queryParams: {id: userData.id}});
+    this.router.navigate([HomeConsts.ROUTE_USER], {queryParams: {id: userData.id}});
   }
 }

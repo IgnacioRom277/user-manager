@@ -6,6 +6,7 @@ import { AuthBody } from './../../interfaces/index';
 import { AuthService } from '../../services/authentication/auth.service';
 
 import { ToastrService } from 'ngx-toastr';
+import { LoginConsts, LoginTags } from './constants/login.constants';
 
 @Component({
   selector: 'app-login',
@@ -15,6 +16,7 @@ import { ToastrService } from 'ngx-toastr';
 export class LoginComponent implements OnInit {
   public isHide: boolean;
   public loginFormGroup: FormGroup;
+  public tags: any;
 
   constructor(
     private authService: AuthService,
@@ -22,6 +24,7 @@ export class LoginComponent implements OnInit {
     private router: Router,
     private toastr: ToastrService
   ) {
+    this.tags = LoginTags;
     this.isHide = true;
     this.loginFormGroup = this.builder.group({
       email: '',
@@ -43,20 +46,20 @@ export class LoginComponent implements OnInit {
     this.authService.login(bodyRequest)
     .then((res) => {
       if (res.token) {
-        this.toastr.success(' Bienvenido al sistema')
-        this.router.navigate(['/home']);
+        this.toastr.success(LoginConsts.MESSAGE_WELCOME)
+        this.router.navigate([LoginConsts.ROUTE_HOME]);
       } else {
-        if (res.error === 'user not found') {
-          this.toastr.error('El usuario no existe, verifica tu información')
+        if (res.error === LoginConsts.ERROR_USER_NOT_FOUND) {
+          this.toastr.error(LoginConsts.ERROR_USER_NOT_EXISTS)
         } else {
-          this.toastr.error('Error al iniciar sesión verifica la información')
+          this.toastr.error(LoginConsts.ERROR_LOGIN)
         }
-        this.router.navigate(['/not-found']);
+        this.router.navigate([LoginConsts.ROUTE_NOT_FOUND]);
       }
     })
     .catch((err) => {
-      this.toastr.error('Error al iniciar sesión')
-      this.router.navigate(['/not-found'])
+      this.toastr.error(LoginConsts.ERROR_LOGIN)
+      this.router.navigate([LoginConsts.ROUTE_NOT_FOUND])
     })
   }
 
@@ -65,11 +68,11 @@ export class LoginComponent implements OnInit {
    * @returns {string} Error message to be display inline
    */
   public getErrorMessage(): string {
-    if (this.loginFormGroup.controls.email.hasError('required')) {
-      return 'El correo electrónico es requerido';
+    if (this.loginFormGroup.controls.email.hasError(LoginConsts.KEY_REQUIRED)) {
+      return LoginConsts.ERROR_EMAIL_REQUIRED;
     }
 
-    return this.loginFormGroup.controls.email.hasError('email') ? 'Ingresa un correo válido' : '';
+    return this.loginFormGroup.controls.email.hasError(LoginConsts.KEY_EMAIL) ? LoginConsts.ERROR_EMAIL_INVALID : LoginConsts.EMPTY_STRING;
   }
 
   /**
@@ -102,7 +105,7 @@ export class LoginComponent implements OnInit {
   private validateLoggedUser(): void {
     const isAuthenticated: boolean = this.authService.isAuthenticated();
     if (isAuthenticated) {
-      this.router.navigate(['/home'])
+      this.router.navigate([LoginConsts.ROUTE_HOME]);
     }
   }
 
@@ -110,6 +113,6 @@ export class LoginComponent implements OnInit {
    * @description Shows a in progress toaster
    */
   public inProgress(): void {
-    this.toastr.warning('Función no disponible. Continuamos trabajando...')
+    this.toastr.warning(LoginConsts.FUNCTION_UNAVAILABLE);
   }
 }
