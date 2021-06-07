@@ -46,10 +46,18 @@ export class LoginComponent implements OnInit {
         this.toastr.success(' Bienvenido al sistema')
         this.router.navigate(['/home']);
       } else {
+        if (res.error === 'user not found') {
+          this.toastr.error('El usuario no existe, verifica tu información')
+        } else {
+          this.toastr.error('Error al iniciar sesión verifica la información')
+        }
         this.router.navigate(['/not-found']);
       }
     })
-    .catch((err) => { this.router.navigate(['/not-found']) })
+    .catch((err) => {
+      this.toastr.error('Error al iniciar sesión')
+      this.router.navigate(['/not-found'])
+    })
   }
 
   /**
