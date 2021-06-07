@@ -57,8 +57,3 @@
 .space-between {
   flex: 1 1 auto;
 }
-
-.nav-option-label {
-  width: 100%;
-  text-align: center;
-}
