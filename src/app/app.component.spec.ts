@@ -1,6 +1,8 @@
-import { TestBed } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
+import { TestBed } from '@angular/core/testing';
+
 import { AppComponent } from './app.component';
+import { LocalStorageService } from './services/utils/local-storage.service';
 
 describe('AppComponent', () => {
   beforeEach(async () => {
@@ -11,6 +13,9 @@ describe('AppComponent', () => {
       declarations: [
         AppComponent
       ],
+      providers: [
+        LocalStorageService
+      ]
     }).compileComponents();
   });
 

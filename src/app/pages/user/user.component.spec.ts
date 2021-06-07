@@ -4,6 +4,7 @@ import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { ReactiveFormsModule } from '@angular/forms';
 import { RouterTestingModule } from '@angular/router/testing';
 
+import { LocalStorageService } from './../../services/utils/local-storage.service';
 import { MaterialModule } from './../../modules/material/material.module';
 import { PaginatorService } from './../../services/utils/paginator-service';
 import { UserComponent } from './user.component';
@@ -24,6 +25,7 @@ describe('UserComponent', () => {
         RouterTestingModule
       ],
       providers: [
+        LocalStorageService,
         PaginatorService
       ],
     })
