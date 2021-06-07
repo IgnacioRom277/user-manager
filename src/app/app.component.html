@@ -1,23 +1,21 @@
-<div>
+<div *ngIf="isUserLoggedIn">
   <mat-toolbar color="primary">
     <button mat-icon-button aria-label="menu" (click)="isExpanded = !isExpanded">
       <mat-icon>menu</mat-icon>
     </button>
     <h1>User Manager</h1>
     <span class="space-between"></span>
-    <button mat-icon-button aria-label="back" matTooltip="Regresar">
+    <button mat-icon-button aria-label="back" matTooltip="Regresar" (click)="onBack()">
       <mat-icon>arrow_back</mat-icon>
     </button>
-    <button mat-icon-button aria-label="logout" matTooltip="Inicio">
+    <button mat-icon-button aria-label="logout" matTooltip="Inicio" (click)="onHome()">
       <mat-icon>home</mat-icon>
     </button>
     <button mat-icon-button aria-label="logout" matTooltip="Salir" (click)="onLogout()">
       <mat-icon>logout</mat-icon>
     </button>
   </mat-toolbar>
-</div>
 
-<div>
   <mat-sidenav-container autosize>
     <mat-sidenav
         #sidenav
@@ -32,4 +30,8 @@
     </mat-sidenav>
     <router-outlet></router-outlet>
   </mat-sidenav-container>
+</div>
+
+<div *ngIf="!isUserLoggedIn">
+  <app-login></app-login>
 </div>
