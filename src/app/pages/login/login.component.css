@@ -61,3 +61,7 @@ button {
   width: 90%;
   flex-wrap: wrap;
 }
+
+.mat-icon {
+  color: rgb(45, 209, 146) !important;
+}
