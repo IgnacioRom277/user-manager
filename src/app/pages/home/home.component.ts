@@ -7,7 +7,7 @@ import { PaginatorService } from './../../services/utils/paginator-service';
 import { User, UserReponse } from './../../interfaces/users';
 import { UserService } from './../../services/users/users.service';
 
-const DISPLAYED_COLUMNS = ['preview', 'email', 'first_name', 'last_name'];
+const DISPLAYED_COLUMNS = ['preview', 'email', 'first_name', 'last_name', 'actions'];
 
 @Component({
   selector: 'app-home',

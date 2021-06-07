@@ -125,7 +125,7 @@ export class UserComponent implements OnInit {
         button1: "Cancelar",
         button2: "Confirmar"
       },
-      width: '650px'
+      width: '620px'
     })
 
     dialogRef.afterClosed().subscribe(async(result: any) => {
