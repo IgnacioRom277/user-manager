@@ -1,1 +1,21 @@
-<router-outlet></router-outlet>
+<div *ngIf="isUserLoggedIn">
+  <mat-toolbar>
+    <h1>User Manager</h1>
+    <span class="space-between"></span>
+    <button mat-icon-button aria-label="back" matTooltip="Regresar" (click)="onBack()">
+      <mat-icon>arrow_back</mat-icon>
+    </button>
+    <button mat-icon-button aria-label="logout" matTooltip="Inicio" (click)="onHome()">
+      <mat-icon>home</mat-icon>
+    </button>
+    <button mat-icon-button aria-label="logout" matTooltip="Salir" (click)="onLogout()">
+      <mat-icon>logout</mat-icon>
+    </button>
+  </mat-toolbar>
+
+  <router-outlet></router-outlet>
+</div>
+
+<div *ngIf="!isUserLoggedIn">
+  <app-login></app-login>
+</div>

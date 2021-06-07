@@ -3,8 +3,12 @@ import { Injectable } from "@angular/core";
 import { AuthBody } from '../../interfaces/index';
 import { LocalStorageService } from '../utils/local-storage.service';
 
+import { BehaviorSubject, Observable } from "rxjs";
+
 @Injectable({ providedIn: 'root'})
 export class AuthService {
+  private userLoggedIn = new BehaviorSubject(false);
+
   constructor(
     private localStorageService: LocalStorageService
   ) {}
@@ -50,9 +54,26 @@ export class AuthService {
   public isAuthenticated(): boolean {
     const token = this.localStorageService.getItem('token');
     if (token) {
+      this.setLoggedIn(true);
       return true;
     } else {
       return false;
     }
+  }
+
+  /**
+   * @description Creates an Observable to know if user is logged
+   * @returns {Observable<boolean>} Observable if user is logged
+   */
+   getLoggedIn(): Observable<boolean> {
+    return this.userLoggedIn.asObservable();
+  }
+
+  /**
+   * @description Returns if user is logged
+   * @param {boolean} isLogged Boolean if user is logged
+   */
+  setLoggedIn(isLogged: boolean) {
+    this.userLoggedIn.next(isLogged);
   }
 }

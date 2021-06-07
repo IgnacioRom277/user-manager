@@ -1,9 +1,14 @@
+.general-container {
+  background-image: url('https://www.mockplus.com/images/entbg.jpg');
+  background-size: cover;
+}
+
 h2 {
   text-align: center;
-  background-color: #00263a;
+  background-color: rgb(45, 209, 146) !important;
   color: white;
-  border-top-left-radius: 5px;
-  border-top-right-radius: 5px;
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
 }
 
 .image-button-container {
@@ -23,10 +28,50 @@ h2 {
 }
 
 .paginator-container {
-  width: 90%;
+  width: 80%;
+  margin: auto;
 }
 
 .mat-icon {
   font-size: 17px;
+}
+
+.mat-card {
+  width: 80%;
+  margin: auto;
+  padding: 0;
+  border-radius: 20px;
+  box-shadow: 0 0 1em 0 rgba(45, 209, 146, 0.404);
+}
+
+.mat-icon {
+  font-size: 1.5vw ;
+  color: white;
+}
+
+.mat-mini-fab.mat-primary {
+  background-color: rgb(45, 209, 146) !important;
+  color: white !important;
+}
+
+.card-container {
+  padding: 1% 0;
+}
+
+.mat-table {
+  border-collapse: initial !important;
+}
+
+h1 {
+  text-align: center;
+  color: white;
+  font-family: ui-serif;
+  font-weight: 700;
+  background-color: rgb(45, 209, 146);
+  line-height: initial;
+  border-radius: 1vw;
+  border: 1vw solid rgb(45, 209, 146);
+  width: 80%;
+  margin: auto;
 }
 

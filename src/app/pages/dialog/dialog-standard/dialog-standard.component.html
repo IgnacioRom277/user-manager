@@ -16,21 +16,21 @@
 <div class="dialog-resume">
   {{data.resume}}
 </div>
-<mat-grid-list cols="3" rowHeight="1:.40">
-  <mat-grid-tile colspan="1" rowspan="2">
-    <img src="{{data.imgRef}}" width="95%" height="95%" alt="Dialog image">
+<mat-grid-list cols="2" rowHeight="1:.40">
+  <mat-grid-tile rowspan="2">
+    <img src="{{data.imgRef}}" width="80%" height="100%" alt="Dialog image">
   </mat-grid-tile>
-  <mat-grid-tile colspan="2" rowspan="1">
+  <mat-grid-tile class="right-section">
     <p class="dialog-question">{{data.question}}</p>
-  </mat-grid-tile>
-  <mat-grid-tile class="button-container">
-    <button mat-button class="secondary-button align-left" (click)="onClickButton1()">{{data.button1}}</button>
-    <button
-      mat-button
-      cdkFocusInitial
-      class="primary-button align-right"
-      (click)="onClickButton2()">
-      {{data.button2}}
-    </button>
+    <div class="button-container">
+      <button mat-button class="secondary-button align-left" (click)="onClickButton1()">{{data.button1}}</button>
+      <button
+        mat-button
+        cdkFocusInitial
+        class="primary-button align-right"
+        (click)="onClickButton2()">
+        {{data.button2}}
+      </button>
+    </div>
   </mat-grid-tile>
 </mat-grid-list>

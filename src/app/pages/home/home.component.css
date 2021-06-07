@@ -4,6 +4,8 @@
   justify-content: center;
   align-items: center;
   height: 100%;
+  background-image: url(https://www.mockplus.com/images/banner.jpg);
+  background-size: cover;
 }
 
 .user {
@@ -15,6 +17,7 @@
 }
 
 img {
+  height: 4vw;
   width: 4vw;
   border-radius: 50%;
   border: 3px solid #00263a;
@@ -22,9 +25,18 @@ img {
 
 h1 {
   font-weight: 600;
-  margin: 2% 0;
+  margin: 1% 0;
+  color: white;
 }
 
 h3 {
   font-weight: 500;
+  color: white;
+}
+
+.mat-card {
+  border-radius: 5px;
+  background-color: rgb(45, 209, 146) !important;
+  text-align: center;
+  margin: 1%;
 }

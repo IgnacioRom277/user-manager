@@ -1,48 +1,50 @@
 <div class="general-container">
-  <mat-card>
-    <h2>Edición de usuario {{ userData.first_name }}</h2>
-    <mat-card-content>
-      <mat-grid-list cols="4" rowHeight="1:.7">
-        <form [formGroup]="userForm">
-          <mat-grid-tile>
-            <mat-form-field appearance="fill">
-              <mat-label>
-                Correo electrónico
-              </mat-label>
-              <input matInput formControlName="email">
-              <mat-error *ngIf="this.userForm.controls.email.invalid"> {{getErrorMessage()}}</mat-error>
-            </mat-form-field>
-          </mat-grid-tile>
-          <mat-grid-tile>
-            <mat-form-field appearance="fill">
-              <mat-label>
-                Nombre
-              </mat-label>
-              <input matInput formControlName="firstName">
-              <mat-error> El nombre es requerida </mat-error>
-            </mat-form-field>
-          </mat-grid-tile>
-          <mat-grid-tile>
-            <mat-form-field appearance="fill">
-              <mat-label>
-                Apellido
-              </mat-label>
-              <input matInput formControlName="lastName">
-              <mat-error> El apellido es requerido </mat-error>
-            </mat-form-field>
-          </mat-grid-tile>
-          <mat-grid-tile>
-            <div class="image-button-container">
-              <img [src]="userData.avatar">
-              <button mat-raised-button color="primary" (click)="onSave()">Guardar</button>
-            </div>
-          </mat-grid-tile>
-        </form>
-      </mat-grid-list>
-    </mat-card-content>
-  </mat-card>
+  <div class="card-container">
+    <mat-card>
+      <h2>Edición de usuario {{ userData.first_name }}</h2>
+      <mat-card-content>
+        <mat-grid-list cols="4" rowHeight="1:.7">
+          <form [formGroup]="userForm">
+            <mat-grid-tile>
+              <mat-form-field appearance="fill">
+                <mat-label>
+                  Correo electrónico
+                </mat-label>
+                <input matInput formControlName="email">
+                <mat-error *ngIf="this.userForm.controls.email.invalid"> {{getErrorMessage()}}</mat-error>
+              </mat-form-field>
+            </mat-grid-tile>
+            <mat-grid-tile>
+              <mat-form-field appearance="fill">
+                <mat-label>
+                  Nombre
+                </mat-label>
+                <input matInput formControlName="firstName">
+                <mat-error> El nombre es requerida </mat-error>
+              </mat-form-field>
+            </mat-grid-tile>
+            <mat-grid-tile>
+              <mat-form-field appearance="fill">
+                <mat-label>
+                  Apellido
+                </mat-label>
+                <input matInput formControlName="lastName">
+                <mat-error> El apellido es requerido </mat-error>
+              </mat-form-field>
+            </mat-grid-tile>
+            <mat-grid-tile>
+              <div class="image-button-container">
+                <img [src]="userData.avatar">
+                <button mat-raised-button color="primary" (click)="onSave()">Guardar</button>
+              </div>
+            </mat-grid-tile>
+          </form>
+        </mat-grid-list>
+      </mat-card-content>
+    </mat-card>
+  </div>
 
-  <div class="table-container">
+  <div class="table-container" *ngIf="isValidData">
     <table mat-table [dataSource]="dataSource">
       <ng-container matColumnDef="title">
         <th mat-header-cell *matHeaderCellDef mat-sort-header> Título </th>
@@ -68,11 +70,13 @@
     </table>
   </div>
 
-  <div class="paginator-container">
+  <div class="paginator-container" [hidden]="!isValidData">
     <mat-paginator
       [pageSize]="5"
       [pageSizeOptions]= "[3,5,10]"
       showFirstLastButtons>
     </mat-paginator>
   </div>
+
+  <h1 *ngIf="!isValidData"> No hay posts disponibles </h1>
 </div>

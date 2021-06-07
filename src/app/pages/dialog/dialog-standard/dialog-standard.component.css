@@ -1,8 +1,8 @@
 .button-container {
   position: absolute;
-  right: 0%;
-  left: 67% !important;
-  bottom: 10%;
+  margin-top: 30%;
+  width: 100%;
+  text-align: center;
 }
 
 .dialog-close-icon {
@@ -13,21 +13,19 @@
 .dialog-title {
   font-size: 20px;
   font-weight: 500;
-  color: #00263a;
+  color: #5ad8a8;
   position: absolute;
   left: 0%;
 }
 
 .dialog-resume {
   position: absolute;
-  left: 0%;
   text-align: justify;
 }
 
 .dialog-question {
   text-align: justify;
   position: absolute;
-  right: 0%;
   top: 25%
 }
 
@@ -44,6 +42,15 @@
   height: 37px;
   border-radius: 2px;
   background-color: #ffffff;
-  color: #2a628f;
-  border: 1px solid #2a628f;
+  color: #5ad8a8;
+  border: 1px solid #5ad8a8;
+}
+
+.right-section {
+  color: #5ad8a8;
+  height: 12vh;
+}
+
+button {
+  margin: 0 1%;
 }

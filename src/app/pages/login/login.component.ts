@@ -1,9 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 
 import { AuthBody } from './../../interfaces/index';
 import { AuthService } from '../../services/authentication/auth.service';
-import { Router } from '@angular/router';
+
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-login',
@@ -17,7 +19,8 @@ export class LoginComponent implements OnInit {
   constructor(
     private authService: AuthService,
     private readonly builder: FormBuilder,
-    private router: Router
+    private router: Router,
+    private toastr: ToastrService
   ) {
     this.isHide = true;
     this.loginFormGroup = this.builder.group({
@@ -37,12 +40,16 @@ export class LoginComponent implements OnInit {
    */
   public onSubmit(): void {
     const bodyRequest = this.createAuthBody();
-    const isTokenGenerated = this.authService.login(bodyRequest)
-    .then((res) => { return res; })
+    this.authService.login(bodyRequest)
+    .then((res) => {
+      if (res.token) {
+        this.toastr.success(' Bienvenido al sistema')
+        this.router.navigate(['/home']);
+      } else {
+        this.router.navigate(['/not-found']);
+      }
+    })
     .catch((err) => { this.router.navigate(['/not-found']) })
-    if (isTokenGenerated) {
-      this.router.navigate(['/home']);
-    }
   }
 
   /**
@@ -89,5 +96,12 @@ export class LoginComponent implements OnInit {
     if (isAuthenticated) {
       this.router.navigate(['/home'])
     }
+  }
+
+  /**
+   * @description Shows a in progress toaster
+   */
+  public inProgress(): void {
+    this.toastr.warning('Función no disponible. Continuamos trabajando...')
   }
 }
