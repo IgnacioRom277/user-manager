@@ -1,6 +1,6 @@
 <div class="general-container">
   <div class="left-container">
-    <h1> User-Manager System </h1>
+    <h1> User-Manager-System </h1>
   </div>
   <div class="right-container">
     <mat-card>
@@ -30,8 +30,8 @@
       <mat-card-actions>
         <button mat-raised-button color="primary" [disabled]=!loginFormGroup.valid (click)="onSubmit()">Iniciar sesión</button>
         <mat-divider></mat-divider>
-        <a href="https://www.instagram.com/">¿Olvidaste tu contraseña?</a>
-        <button mat-raised-button color="primary" (click)="onSubmit()">Crear cuenta</button>
+        <a (click)="inProgress()">¿Olvidaste tu contraseña?</a>
+        <button mat-raised-button color="primary" (click)="inProgress()">Crear cuenta</button>
       </mat-card-actions>
     </mat-card>
   </div>

@@ -44,7 +44,7 @@
     </mat-card>
   </div>
 
-  <div class="table-container">
+  <div class="table-container" *ngIf="isValidData">
     <table mat-table [dataSource]="dataSource">
       <ng-container matColumnDef="title">
         <th mat-header-cell *matHeaderCellDef mat-sort-header> Título </th>
@@ -70,11 +70,13 @@
     </table>
   </div>
 
-  <div class="paginator-container">
+  <div class="paginator-container" [hidden]="!isValidData">
     <mat-paginator
       [pageSize]="5"
       [pageSizeOptions]= "[3,5,10]"
       showFirstLastButtons>
     </mat-paginator>
   </div>
+
+  <h1 *ngIf="!isValidData"> No hay posts disponibles </h1>
 </div>

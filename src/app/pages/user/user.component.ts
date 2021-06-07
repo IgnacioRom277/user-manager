@@ -11,6 +11,8 @@ import { PostsService } from './../../services/posts/posts.service';
 import { User, Post } from './../../interfaces/index';
 import { UserService } from './../../services/users/users.service';
 
+import { ToastrService } from 'ngx-toastr';
+
 const DISPLAYED_COLUMNS = ['title', 'body', 'actions'];
 const KEY_ID = 'id';
 
@@ -22,6 +24,7 @@ const KEY_ID = 'id';
 export class UserComponent implements OnInit {
   public dataSource!: MatTableDataSource<Post>;
   public displayedColumns: Array<string> = DISPLAYED_COLUMNS;
+  public isValidData!: boolean;
   public userData!: User;
   public userForm!: FormGroup;
   public userId!: number;
@@ -34,7 +37,8 @@ export class UserComponent implements OnInit {
     private paginatorService: PaginatorService,
     private postsService: PostsService,
     private readonly builder: FormBuilder,
-    private userService: UserService
+    private userService: UserService,
+    private toastr: ToastrService
   ) { }
 
    ngOnInit(): void {
@@ -72,6 +76,13 @@ export class UserComponent implements OnInit {
     if (userPosts) {
       this.dataSource = new MatTableDataSource(userPosts);
       this.dataSource.paginator = this.paginator;
+      if (userPosts.length) {
+        this.isValidData = true;
+      } else {
+        this.isValidData = false;
+      }
+    } else {
+      this.isValidData = false;
     }
   }
 
@@ -108,7 +119,12 @@ export class UserComponent implements OnInit {
       first_name: this.userForm.value.firstName,
       last_name: this.userForm.value.lastName
     }
-    const updateStatus =  await this.userService.updateUserDetailsById(this.userId, body);
+    const updateStatus = await this.userService.updateUserDetailsById(this.userId, body);
+    if (updateStatus) {
+      this.toastr.success('Guardado correctamente: ' + updateStatus.first_name + ' ' + updateStatus.last_name + ' - ' + updateStatus.email)
+    } else {
+      this.toastr.error('Hubo un error al guardar el usuario');
+    }
   }
 
   /**
@@ -120,7 +136,7 @@ export class UserComponent implements OnInit {
       data: {
         title: "Eliminación de Post",
         resume: "Estas por eliminar el post, esta acción no es reversible",
-        imgRef: "import * from '../../../assets/img/delete.png",
+        imgRef: "../../../assets/img/delete.png",
         question: "¿Deseas eliminar el post?",
         button1: "Cancelar",
         button2: "Confirmar"
@@ -131,6 +147,9 @@ export class UserComponent implements OnInit {
     dialogRef.afterClosed().subscribe(async(result: any) => {
       if (result === 'Confirm') {
         const deleteStatus =  await this.postsService.deletePostByPostId(postData.id);
+        if (deleteStatus) {
+          this.toastr.success('Eliminado correctamente');
+        }
       }
     })
   }
